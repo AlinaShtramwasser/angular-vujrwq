@@ -1,10 +1,10 @@
-import { Injectable } from "@angular/core";
+import { Injectable, OnInit } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 
 @Injectable()
 export class CartService {
   items = [];
-
+  shiping: any = [];
   constructor(private http: HttpClient) {}
 
   addToCart(product) {
@@ -17,10 +17,16 @@ export class CartService {
     this.items = [];
     return this.items;
   }
-
+  ngOnInit() {}
   getShippingPrices() {
-    return this.http.get<{ type: string; price: number }[]>(
-      "/assets/shipping.json"
-    );
+    console.log("on init");
+    this.http.get("/assets/shipping.json").subscribe(data => {
+      console.log("here" + data);
+      this.shiping = data;
+    });
+    return this.shiping;
+    // return this.http.get<{ type: string; price: number }[]>(
+    //   "/assets/shipping.json"
+    // );
   }
 }
