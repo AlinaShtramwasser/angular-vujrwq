@@ -27,6 +27,5 @@ export class CartService {
         this.shiping = data;
       });
     return this.shiping;
-   
   }
 }
