@@ -19,14 +19,14 @@ export class CartService {
   }
   ngOnInit() {}
   getShippingPrices() {
-    console.log("on init");
-    this.http.get("/assets/shipping.json").subscribe(data => {
-      console.log("here" + data);
-      this.shiping = data;
-    });
+    //console.log("on init");
+    this.http
+      .get<any>("/assets/shipping.json")
+      .subscribe(data => {
+        //console.log("here" + data);
+        this.shiping = data;
+      });
     return this.shiping;
-    // return this.http.get<{ type: string; price: number }[]>(
-    //   "/assets/shipping.json"
-    // );
+   
   }
 }
